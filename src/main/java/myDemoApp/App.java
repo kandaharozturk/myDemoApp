@@ -78,7 +78,8 @@ public class App {
           get("/compute",
             (rq, rs) -> {
               Map<String, String> map = new HashMap<String, String>();
-              map.put("result", "not computed yet!");
+              map.put("result", "true if list has a chosen type of number between low bound and high bound.\n");
+              map.put("exp", "1st box for list(one number per line) -- 2nd box for low bound -- 3rd box for high bound -- 4th boxfor choice (\"even\" or \"odd\")");
               return new ModelAndView(map, "compute.mustache");
             },
             new MustacheTemplateEngine());
