@@ -6,9 +6,46 @@ package myDemoApp;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    @Test void throwsException_HBoundIsNotGreaterThanLBound(){
+        ArrayList<Integer>list=new ArrayList<>(Arrays.asList(2,4,5,7,12));
+        assertThrows(IllegalArgumentException.class,
+        ()-> {App.findEvenOrOdd(list, 5, 3, "even");});
     }
+
+    @Test void checkNullArray(){
+        ArrayList<Integer> list=null;
+        assertFalse(App.findEvenOrOdd(list, 0, 1, "even"));
+    }
+
+    @Test void choiceIsIllegal(){
+        ArrayList<Integer>list=new ArrayList<>(Arrays.asList(2,4,5,7,12));
+        assertThrows(IllegalArgumentException.class,
+        ()-> {App.findEvenOrOdd(list, 0, 1, "bla");});
+    }
+
+    @Test void findsEvenNumberCorrectly(){
+        ArrayList<Integer>list=new ArrayList<>(Arrays.asList(2,4,5,7,12));
+        assertTrue(App.findEvenOrOdd(list, 2, 5, "even"));
+    }
+
+    @Test void findsOddNumberCorrectly(){
+        ArrayList<Integer>list=new ArrayList<>(Arrays.asList(2,4,5,7,12));
+        assertTrue(App.findEvenOrOdd(list, 2, 8, "odd"));
+    }
+
+    @Test void notFindsEvenNumberCorrectly(){
+        ArrayList<Integer>list=new ArrayList<>(Arrays.asList(2,4,5,7,12));
+        assertFalse(App.findEvenOrOdd(list, 5, 8, "even"));
+    }
+
+    @Test void notFindsOddNumberCorrectly(){
+        ArrayList<Integer>list=new ArrayList<>(Arrays.asList(2,4,5,7,12));
+        assertFalse(App.findEvenOrOdd(list, 1, 5, "odd"));
+    }
+
 }
